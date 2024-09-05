@@ -1,14 +1,53 @@
+import 'dart:convert'; // Import JSON decoding.
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import the HTTP package.
 
 import '../../../../themes/appointmentStatusColors.dart';
 import '../../../../themes/bottomNavBar/patientBottomNavBar.dart';
 import '../../../../themes/switchUser.dart';
 import '../appointment_details/AppointmentDetailsScreen.dart';
 
-class PatientHomeScreen extends StatelessWidget {
-  final String userEmail = "johndoe@example.com";
-
+class PatientHomeScreen extends StatefulWidget {
   const PatientHomeScreen({super.key}); // Replace with dynamic user email
+
+  @override
+  _PatientHomeScreenState createState() => _PatientHomeScreenState();
+}
+
+class _PatientHomeScreenState extends State<PatientHomeScreen> {
+  final String userEmail = "johndoe@example.com";
+  List<dynamic> appointments = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      // Replace with your actual Gist raw URL
+      final response = await http.get(Uri.parse('https://gist.githubusercontent.com/PasinduNimesha/418cd90da2753629286358905eaf5c59/raw/332251635fadc8284f9060251cd82571b06a6392/appointments.json'));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          appointments = data['appointments']; // Access the 'appointments' key
+          isLoading = false;
+        });
+      } else {
+        // Handle HTTP errors
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      // Handle other errors
+      print(e);
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +63,15 @@ class PatientHomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator()) // Show a loading indicator while fetching data
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Container()
+              child: Container(),
             ),
             const SizedBox(height: 20),
             const Text(
@@ -38,97 +79,36 @@ class PatientHomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            AppointmentButton(
-              color: getAppointmentStatusColor('Queued'),
-              text: 'John Doe - Chest Pain',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppointmentDetailsScreen(
-                      appointmentName: 'Chest Pain',
-                      doctorName: 'Dr. John Doe',
-                      specialty: 'Cardiac Surgeon',
-                      appointmentTime: '10:30am - 11:00am',
-                      appointmentDate: 'February 15, 2024',
-                      location: 'Suwa Piyasa - Kurunegala',
-                      appointmentNumber: 34,
-                      currentNumber: 23,
-                      turnTime: '10:43am',
-                      appointmentStatus: 'Queued',
-                    ),
-                  ),
-                );
-              },
-            ),
-            AppointmentButton(
-              color: getAppointmentStatusColor('Upcoming'),
-              text: 'Simon Powel - Leg injury',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppointmentDetailsScreen(
-                      appointmentName: 'Leg injury',
-                      doctorName: 'Dr. Simon Powel',
-                      specialty: 'Orthopedic Surgeon',
-                      appointmentTime: '11:00am - 11:30am',
-                      appointmentDate: 'February 15, 2024',
-                      location: 'Suwa Piyasa - Kurunegala',
-                      appointmentNumber: 35,
-                      currentNumber: 25,
-                      turnTime: '11:15am',
-                      appointmentStatus: 'Upcoming',
-                    ),
-                  ),
-                );
-              },
-            ),
-            AppointmentButton(
-              color: getAppointmentStatusColor('Missed'),
-              text: 'Eddie Brownrick - Knee pain',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppointmentDetailsScreen(
-                      appointmentName: 'Knee pain',
-                      doctorName: 'Dr. Eddie Brownrick',
-                      specialty: 'Orthopedic Surgeon',
-                      appointmentTime: '11:30am - 12:00pm',
-                      appointmentDate: 'February 15, 2024',
-                      location: 'Suwa Piyasa - Kurunegala',
-                      appointmentNumber: 36,
-                      currentNumber: 26,
-                      turnTime: '11:45am',
-                      appointmentStatus: 'Missed',
-                    ),
-                  ),
-                );
-              },
-            ),
-            AppointmentButton(
-              color: getAppointmentStatusColor('Completed'),
-              text: 'Richard Ryman - Eye',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppointmentDetailsScreen(
-                      appointmentName: 'Eye Checkup',
-                      doctorName: 'Dr. Richard Ryman',
-                      specialty: 'Ophthalmologist',
-                      appointmentTime: '12:00pm - 12:30pm',
-                      appointmentDate: 'February 15, 2024',
-                      location: 'Suwa Piyasa - Kurunegala',
-                      appointmentNumber: 37,
-                      currentNumber: 27,
-                      turnTime: '12:15pm',
-                      appointmentStatus: 'Completed',
-                    ),
-                  ),
-                );
-              },
+            Expanded(
+              child: ListView.builder(
+                itemCount: appointments.length,
+                itemBuilder: (context, index) {
+                  final appointment = appointments[index];
+                  return AppointmentButton(
+                    color: getAppointmentStatusColor(appointment['appointmentStatus']),
+                    text: '${appointment['appointmentName']} - ${appointment['doctorName']}',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AppointmentDetailsScreen(
+                            appointmentName: appointment['appointmentName'],
+                            doctorName: appointment['doctorName'],
+                            specialty: appointment['specialty'],
+                            appointmentTime: appointment['appointmentTime'],
+                            appointmentDate: appointment['appointmentDate'],
+                            location: appointment['location'],
+                            appointmentNumber: appointment['appointmentNumber'],
+                            currentNumber: appointment['currentNumber'],
+                            turnTime: appointment['turnTime'],
+                            appointmentStatus: appointment['appointmentStatus'],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -173,4 +153,3 @@ class AppointmentButton extends StatelessWidget {
     );
   }
 }
-
