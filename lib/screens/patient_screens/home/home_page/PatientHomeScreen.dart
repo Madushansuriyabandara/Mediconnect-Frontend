@@ -27,21 +27,18 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
 
   Future<void> fetchData() async {
     try {
-      // Replace with your actual Gist raw URL
       final response = await http.get(Uri.parse('https://gist.githubusercontent.com/PasinduNimesha/418cd90da2753629286358905eaf5c59/raw/332251635fadc8284f9060251cd82571b06a6392/appointments.json'));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
-          appointments = data['appointments']; // Access the 'appointments' key
+          appointments = data['appointments'];
           isLoading = false;
         });
       } else {
-        // Handle HTTP errors
         throw Exception('Failed to load data');
       }
     } catch (e) {
-      // Handle other errors
       print(e);
       setState(() {
         isLoading = false;
