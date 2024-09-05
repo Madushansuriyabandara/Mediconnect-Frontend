@@ -12,7 +12,7 @@ class GetStartedScreen extends StatelessWidget {
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/get_started_image.jpg',
+              'assets/images/get_started_image.jpg',
               fit: BoxFit.cover, // Make image cover the entire screen
             ),
           ),
