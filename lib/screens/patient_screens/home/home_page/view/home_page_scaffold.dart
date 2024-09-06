@@ -3,7 +3,7 @@ import '../widgets/widgets.dart'; // Import all widgets from the widgets.dart fi
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:mediconnect/widgets/bottom_nav_bar/patient_bottom_nav_bar.dart';
 import 'package:mediconnect/screens/patient_screens/home/switch_user/switch_user.dart';
-import 'package:mediconnect/screens/patient_screens/home/appointment_details/appointment_details.dart';
+import 'package:mediconnect/screens/patient_screens/home/appointment_details/AppointmentDetailsScreen.dart';
 import 'package:mediconnect/widgets/appointment_status_colors.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
