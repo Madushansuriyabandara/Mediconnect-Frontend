@@ -1,2 +1,2 @@
-export 'background_image.dart';
-export 'foreground_content.dart';
+export 'BackgroundImage.dart';
+export 'ForegroundContent.dart';

@@ -1,1 +1,1 @@
-export 'patient_registration_scaffold.dart';
+export 'PatientRegistrationScaffold.dart';
