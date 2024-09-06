@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
+import '../role_selection/role_selection_screen.dart'; // Import role selection screen
 
 class LoginScaffold extends StatelessWidget {
   const LoginScaffold({super.key});
@@ -29,7 +30,25 @@ class LoginScaffold extends StatelessWidget {
                     FacebookSignInButton(),
                     const SizedBox(height: 20),
                     const Text('Do not have an account?', style: TextStyle(color: Colors.black)),
-                    CreateAccountButton(),
+                    CreateAnAccount(),
+                    const SizedBox(height: 20),
+                    // Bypass Login Button
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueAccent,
+                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      ),
+                      child: const Text(
+                        'Bypass Login',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),

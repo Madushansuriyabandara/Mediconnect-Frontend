@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../themes/bottomNavBar/patientBottomNavBar.dart';
+import '../../../../widgets/bottom_nav_bar/patientBottomNavBar.dart';
 
 class SearchDoctor extends StatelessWidget {
   final TextEditingController doctorNameController = TextEditingController();
