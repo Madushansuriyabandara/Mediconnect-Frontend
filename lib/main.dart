@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mediconnect/screens/GetStartedScreen.dart';
+import 'package:mediconnect/screens/common_screens/GetStartedScreen.dart';
 
 void main() {
   runApp(const MyApp());
