@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../widgets/widgets.dart'; // Import the widgets file to export RoleTile
+import 'package:mediconnect/screens/common_screens/role_selection/widgets/RoleTile.dart';
+//import '../../widgets/widgets.dart'; // Import the widgets file to export RoleTile
 
 class RoleSelectionScaffold extends StatelessWidget {
   const RoleSelectionScaffold({super.key});
@@ -11,19 +12,19 @@ class RoleSelectionScaffold extends StatelessWidget {
         Navigator.pop(context); // Redirect to the previous screen
         return false; // Prevents default back button behavior
       },
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'I am a,',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   RoleTile(
                     icon: Icons.local_hospital,
                     label: 'Doctor',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/patient_screens/prescriptions/prescriptions_page/PrescriptionPage.dart';
 
 import '../../screens/patient_screens/home/home_page/HomePage.dart';
-import '../../screens/patient_screens/notifications/notification_page/Notification_page.dart';
+//import '../../screens/patient_screens/notifications/notification_page/Notification_page.dart';
 import '../../screens/patient_screens/profile/profile_page/ProfileScreen.dart';
 import '../../screens/patient_screens/search/search_page/SearchDoctor.dart';
 

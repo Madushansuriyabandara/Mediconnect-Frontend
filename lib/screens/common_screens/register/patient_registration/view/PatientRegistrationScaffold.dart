@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mediconnect/screens/common_screens/register/widgets/address_fields.dart';
+import 'package:mediconnect/screens/common_screens/register/widgets/birthday_field.dart';
+import 'package:mediconnect/screens/common_screens/register/widgets/name_fields.dart';
+import 'package:mediconnect/screens/common_screens/register/widgets/nic_field.dart';
+import 'package:mediconnect/screens/common_screens/register/widgets/register_button.dart';
 import 'package:mediconnect/screens/common_screens/welcome/widgets/BackgroundImage.dart';
 import '../../../create_account & login/widgets/blurred_box.dart';
 import '../widgets/widgets.dart';
@@ -148,7 +153,7 @@ class _PatientRegistrationScaffoldState
                           if (_formKey.currentState!.validate()) {
                             _registerUser();
                           }
-                        },
+                        }, selectedRole: 'Patient',
                       ),
                     ],
                   ),

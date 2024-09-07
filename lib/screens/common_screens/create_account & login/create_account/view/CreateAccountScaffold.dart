@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mediconnect/screens/common_screens/create_account%20&%20login/create_account/widgets/CreateAccountButton.dart';
 import '../../widgets/widgets.dart';
 
 class CreateAccountScaffold extends StatelessWidget {
@@ -19,7 +20,7 @@ class CreateAccountScaffold extends StatelessWidget {
                   const EmailField(),
                   const PasswordField(),
                   const SizedBox(height: 20),
-                  LoginButton(),
+                  CreateAccountButton(),
                   const SizedBox(height: 20),
                   const Text('Or', style: TextStyle(color: Colors.black)),
                   const SizedBox(height: 10),

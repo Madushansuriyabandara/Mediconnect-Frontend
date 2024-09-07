@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/common_screens/register/patient_registration/PatientRegistrationForm.dart';
-import 'package:mediconnect/screens/common_screens/register/doctor_registration/';
+import 'package:mediconnect/screens/common_screens/register/doctor_registration/DoctorRegistrationForm.dart';
 
 class RoleTile extends StatelessWidget {
   final IconData icon;
@@ -21,7 +21,7 @@ class RoleTile extends StatelessWidget {
         if (onPressedRoute == 'doctor_registration') {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const DoctorRegistrationScreen()),
+            MaterialPageRoute(builder: (context) => const DoctorRegistrationForm()),
           );
         } else if (onPressedRoute == 'patient_registration') {
           Navigator.pushReplacement(
