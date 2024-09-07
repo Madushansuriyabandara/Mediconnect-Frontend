@@ -20,16 +20,18 @@ class SpecializationDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      decoration: const InputDecoration(labelText: 'Specialization'),
-      value: selectedSpecialization,
-      onChanged: onSpecializationChanged,
-      items: specializations.map((String specialization) {
-        return DropdownMenuItem<String>(
-          value: specialization,
-          child: Text(specialization),
-        );
-      }).toList(),
+    return Material(
+      child: DropdownButtonFormField<String>(
+        decoration: const InputDecoration(labelText: 'Specialization'),
+        value: selectedSpecialization,
+        onChanged: onSpecializationChanged,
+        items: specializations.map((String specialization) {
+          return DropdownMenuItem<String>(
+            value: specialization,
+            child: Text(specialization),
+          );
+        }).toList(),
+      ),
     );
   }
 }

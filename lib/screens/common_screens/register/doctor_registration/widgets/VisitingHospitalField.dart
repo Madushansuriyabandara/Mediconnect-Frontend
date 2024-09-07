@@ -26,38 +26,40 @@ class VisitingHospitalField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          controller: hospitalController,
-          decoration: const InputDecoration(labelText: 'Visiting Hospital'),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter the hospital name';
-            }
-            return null;
-          },
-        ),
-        Row(
-          children: daysOfWeek.map((day) {
-            return Row(
-              children: [
-                Checkbox(
-                  value: daySelected[day],
-                  onChanged: (bool? value) {
-                    daySelected[day] = value!;
-                  },
-                ),
-                Text(day),
-              ],
-            );
-          }).toList(),
-        ),
-        ElevatedButton(
-          onPressed: () => _pickTime(context),
-          child: Text(visitingTime != null ? visitingTime!.format(context) : 'Pick Time'),
-        ),
-      ],
+    return Material(
+      child: Column(
+        children: [
+          TextFormField(
+            controller: hospitalController,
+            decoration: const InputDecoration(labelText: 'Visiting Hospital'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter the hospital name';
+              }
+              return null;
+            },
+          ),
+          Row(
+            children: daysOfWeek.map((day) {
+              return Row(
+                children: [
+                  Checkbox(
+                    value: daySelected[day],
+                    onChanged: (bool? value) {
+                      daySelected[day] = value!;
+                    },
+                  ),
+                  Text(day),
+                ],
+              );
+            }).toList(),
+          ),
+          ElevatedButton(
+            onPressed: () => _pickTime(context),
+            child: Text(visitingTime != null ? visitingTime!.format(context) : 'Pick Time'),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -33,16 +33,18 @@ class NICField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.7), // Blurred background
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextFormField(
-        controller: nicController,
-        decoration: const InputDecoration(labelText: 'NIC'),
-        validator: _validateNIC,
+    return Material(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.7), // Blurred background
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: TextFormField(
+          controller: nicController,
+          decoration: const InputDecoration(labelText: 'NIC'),
+          validator: _validateNIC,
+        ),
       ),
     );
   }
