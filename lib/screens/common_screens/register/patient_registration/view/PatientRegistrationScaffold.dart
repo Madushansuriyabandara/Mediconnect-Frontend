@@ -5,7 +5,6 @@ import 'package:mediconnect/screens/common_screens/register/widgets/name_fields.
 import 'package:mediconnect/screens/common_screens/register/widgets/nic_field.dart';
 import 'package:mediconnect/screens/common_screens/register/widgets/register_button.dart';
 import 'package:mediconnect/screens/common_screens/welcome/widgets/BackgroundImage.dart';
-import '../../../create_account & login/widgets/blurred_box.dart';
 import '../widgets/widgets.dart';
 import 'package:mediconnect/screens/patient_screens/home/home_page/HomePage.dart'; // Import the Home Screen after registration
 import 'package:http/http.dart' as http;
@@ -102,61 +101,60 @@ class _PatientRegistrationScaffoldState
       body: Stack(
         children: [
           const BackgroundImage(), // Background Image
-          BlurredBox(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      NameFields(
-                        firstNameController: _firstNameController,
-                        lastNameController: _lastNameController,
-                        otherNamesController: _otherNamesController,
-                      ),
-                      const SizedBox(height: 20),
-                      BirthdayField(birthdayController: _birthdayController),
-                      const SizedBox(height: 20),
-                      AddressFields(
-                        streetNoController: _streetNoController,
-                        streetNameController: _streetNameController,
-                        cityController: _cityController,
-                        postalCodeController: _postalCodeController,
-                      ),
-                      const SizedBox(height: 20),
-                      NICField(nicController: _nicController),
-                      const SizedBox(height: 20),
-                      MealTimeFields(
-                        breakfastTime: _breakfastTime,
-                        lunchTime: _lunchTime,
-                        dinnerTime: _dinnerTime,
-                        onBreakfastChanged: (time) {
-                          setState(() {
-                            _breakfastTime = time;
-                          });
-                        },
-                        onLunchChanged: (time) {
-                          setState(() {
-                            _lunchTime = time;
-                          });
-                        },
-                        onDinnerChanged: (time) {
-                          setState(() {
-                            _dinnerTime = time;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      RegisterButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _registerUser();
-                          }
-                        }, selectedRole: 'Patient',
-                      ),
-                    ],
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(16.0), // Use Padding instead of BlurredBox
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    NameFields(
+                      firstNameController: _firstNameController,
+                      lastNameController: _lastNameController,
+                      otherNamesController: _otherNamesController,
+                    ),
+                    const SizedBox(height: 20),
+                    BirthdayField(birthdayController: _birthdayController),
+                    const SizedBox(height: 20),
+                    AddressFields(
+                      streetNoController: _streetNoController,
+                      streetNameController: _streetNameController,
+                      cityController: _cityController,
+                      postalCodeController: _postalCodeController,
+                    ),
+                    const SizedBox(height: 20),
+                    NICField(nicController: _nicController),
+                    const SizedBox(height: 20),
+                    MealTimeFields(
+                      breakfastTime: _breakfastTime,
+                      lunchTime: _lunchTime,
+                      dinnerTime: _dinnerTime,
+                      onBreakfastChanged: (time) {
+                        setState(() {
+                          _breakfastTime = time;
+                        });
+                      },
+                      onLunchChanged: (time) {
+                        setState(() {
+                          _lunchTime = time;
+                        });
+                      },
+                      onDinnerChanged: (time) {
+                        setState(() {
+                          _dinnerTime = time;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    RegisterButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _registerUser();
+                        }
+                      },
+                      selectedRole: 'Patient',
+                    ),
+                  ],
                 ),
               ),
             ),

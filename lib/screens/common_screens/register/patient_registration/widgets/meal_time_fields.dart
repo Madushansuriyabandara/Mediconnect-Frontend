@@ -23,7 +23,7 @@ class MealTimeFields extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.7), // Blurred background
+        color: Colors.white.withOpacity(0.85), // Blurred background
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

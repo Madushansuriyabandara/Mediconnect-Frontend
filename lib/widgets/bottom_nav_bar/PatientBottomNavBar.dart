@@ -55,12 +55,12 @@ class PatientBottomNavBar extends StatelessWidget {
             //     MaterialPageRoute(builder: (context) => PrescriptionScreen()),
             //   );
             //   break;
-            // case 1:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => SearchDoctor()),
-            //   );
-            //   break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchDoctor()),
+              );
+              break;
             case 2:
               Navigator.push(
                 context,

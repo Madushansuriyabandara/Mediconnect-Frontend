@@ -63,7 +63,7 @@ class LoginButton extends StatelessWidget {
         _checkLoginCredentials(context, email, password);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueAccent,
       ),
       child: const Text('Login'),
     );
