@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../widgets/widgets.dart';
-import '../../view/view.dart';
+import 'package:mediconnect/screens/patient_screens/search/search_page/widgets/widgets.dart';
+import 'package:mediconnect/screens/patient_screens/search/search_results/SearchResults.dart';
+import 'package:mediconnect/widgets/bottom_nav_bar/PatientBottomNavBar.dart';
+//import '../../view/view.dart';
 
 class SearchPagescaffold extends StatefulWidget {
   const SearchPagescaffold({super.key});
