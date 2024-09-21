@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import '../widgets/widgets.dart';
+import '../widgets/MedicineCard.dart';
 
 class SelectMedicineScaffold extends StatelessWidget {
-  final List<Map<String, dynamic>> medicines = [
-    {"name": "Panadine 20mg", "qty": "10 tablets"},
-    {"name": "Digene 5mg", "qty": "5 tablets"},
-    {"name": "Pantodac 10mg", "qty": "10 tablets"}
-  ];
+  final Map<String, dynamic> prescription;
+
+  const SelectMedicineScaffold({Key? key, required this.prescription}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pharmacy Use'),
+        title: const Text('Select Medicine'),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: ListView.builder(
-        itemCount: medicines.length,
+        itemCount: prescription['medications'].length,
         itemBuilder: (context, index) {
-          final medicine = medicines[index];
-          return MedicineCard(
-            medicine: medicine,
-            onTap: () {
-              Navigator.pushNamed(context, '/set_instructions');
-            },
-          );
+          final medication = prescription['medications'][index];
+          return MedicineCard(medication: medication);
         },
       ),
     );
