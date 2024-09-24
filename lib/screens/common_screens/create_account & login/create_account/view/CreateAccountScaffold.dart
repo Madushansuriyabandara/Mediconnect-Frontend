@@ -165,6 +165,7 @@ class _CreateAccountScaffoldState extends State<CreateAccountScaffold> {
                     const SizedBox(height: 10),
                     GoogleSignInButton(),
                     const SizedBox(height: 10),
+                    FacebookSignInButton(),
                   ],
                 ),
               ),
