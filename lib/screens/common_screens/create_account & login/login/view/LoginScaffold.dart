@@ -12,6 +12,9 @@ class LoginScaffold extends StatefulWidget {
 }
 
 class _LoginScaffoldState extends State<LoginScaffold> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +45,8 @@ class _LoginScaffoldState extends State<LoginScaffold> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min, // Reduce the box size based on content
                           children: [
-                            const EmailField(),
-                            const PasswordField(),
+                            EmailField(),
+                            PasswordField(),
                             const SizedBox(height: 20),
                             LoginButton(),
                             const SizedBox(height: 20),
