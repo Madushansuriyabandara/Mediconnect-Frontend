@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/common_screens/role_selection/widgets/RoleTile.dart';
-//import '../../widgets/widgets.dart'; // Import the widgets file to export RoleTile
 
 class RoleSelectionScaffold extends StatelessWidget {
   const RoleSelectionScaffold({super.key});
@@ -12,33 +11,47 @@ class RoleSelectionScaffold extends StatelessWidget {
         Navigator.pop(context); // Redirect to the previous screen
         return false; // Prevents default back button behavior
       },
-      child: const Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'I am a,',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RoleTile(
-                    icon: Icons.local_hospital,
-                    label: 'Doctor',
-                    onPressedRoute: 'doctor_registration',
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/mediconnect.png'),
+              fit: BoxFit.cover, // Adjust the image's size and position
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'I am a,',
+                  style: TextStyle(
+                    fontSize: 50, 
+                    fontWeight: FontWeight.bold, 
+                    color: Colors.black, // Text color over the background
                   ),
-                  SizedBox(width: 20),
-                  RoleTile(
-                    icon: Icons.person,
-                    label: 'Patient',
-                    onPressedRoute: 'patient_registration',
-                  ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    RoleTile(
+                      icon: Icons.local_hospital,
+                      iconColor: Colors.black,
+                      label: 'Doctor',
+                      onPressedRoute: 'doctor_registration',
+                    ),
+                    SizedBox(width: 20),
+                    RoleTile(
+                      icon: Icons.person,
+                      iconColor: Colors.black,
+                      label: 'Patient',
+                      onPressedRoute: 'patient_registration',
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

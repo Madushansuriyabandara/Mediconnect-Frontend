@@ -3,6 +3,79 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+const double defaultBorderRadius = 3.0;
+
+class StretchableButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final double borderRadius;
+  final double buttonPadding;
+  final Color buttonColor, splashColor;
+  final Color buttonBorderColor;
+  final List<Widget> children;
+  final bool centered;
+
+  StretchableButton({
+    required this.buttonColor,
+    required this.borderRadius,
+    required this.children,
+    required this.splashColor,
+    required this.buttonBorderColor,
+    required this.onPressed,
+    this.buttonPadding = 6.0,
+    this.centered = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        var contents = List<Widget>.from(children);
+
+        if (constraints.minWidth == 0) {
+          contents.add(SizedBox.shrink());
+        } else {
+          if (centered) {
+            contents.insert(0, Spacer());
+          }
+          contents.add(Spacer());
+        }
+
+        BorderSide bs;
+        if (buttonBorderColor != null) {
+          bs = BorderSide(
+            color: buttonBorderColor,
+          );
+        } else {
+          bs = BorderSide.none;
+        }
+
+        return ButtonTheme(
+          padding: EdgeInsets.all(buttonPadding),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            side: bs,
+          ),
+          child: ElevatedButton(
+            onPressed: onPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: buttonColor,
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12), // Adjust padding
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+                side: bs,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: contents,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class FacebookSignInButton extends StatelessWidget {
   Future<void> _handleFacebookLogin() async {
     try {
@@ -42,10 +115,43 @@ class FacebookSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      icon: const Icon(Icons.facebook),
-      label: const Text('Sign In with Facebook'),
-      onPressed: _handleFacebookLogin,
+    return SingleChildScrollView( // Make the entire widget scrollable in landscape mode
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9, // Adjust button width dynamically
+            child: StretchableButton(
+              buttonColor: const Color(0xFF1877F2), // Facebook blue
+              borderRadius: defaultBorderRadius,
+              splashColor: Colors.blueAccent,
+              buttonBorderColor: Colors.transparent, // Set the border color or use any desired color
+              onPressed: _handleFacebookLogin,
+              buttonPadding: 6.0, // Reduced padding for a smaller button
+              centered: true,
+              children: const <Widget>[
+                Image(
+                  image: AssetImage(
+                    "assets/logos/flogo-HexRBG-Wht-100.png",
+                  ),
+                  height: 18.0, // Reduced image size for smaller button
+                  width: 18.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 6.0, right: 10.0),
+                  child: Text(
+                    'Continue with Facebook',
+                    style: TextStyle(
+                      fontSize: 14.0, // Reduced font size for smaller button
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

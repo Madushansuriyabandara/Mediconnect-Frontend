@@ -10,9 +10,14 @@ class DoctorIDUpload extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text('Upload Doctor ID'),
-        const SizedBox(width: 20),
+        Expanded(
+          child: Text(
+            'Upload Doctor ID',
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
         ElevatedButton(
           onPressed: _uploadDoctorID,
           child: const Text('Upload'),

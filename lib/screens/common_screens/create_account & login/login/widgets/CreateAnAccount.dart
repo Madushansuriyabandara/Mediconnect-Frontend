@@ -6,7 +6,7 @@ class CreateAnAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return ElevatedButton(
       onPressed: () {
         Navigator.pushReplacement(
           context,
@@ -15,7 +15,8 @@ class CreateAnAccount extends StatelessWidget {
       },
       child: const Text(
         'Create an Account',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.black),
+        
       ),
     );
   }

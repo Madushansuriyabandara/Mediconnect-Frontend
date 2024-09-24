@@ -8,7 +8,6 @@ import '../../../common_screens/register/widgets/address_fields.dart';
 import '../../../common_screens/register/widgets/birthday_field.dart';
 import '../../../common_screens/register/widgets/name_fields.dart';
 import '../../../common_screens/register/widgets/nic_field.dart';
-import '../widgets/widgets.dart';
 
 class DoctorRegistrationForm extends StatefulWidget {
   const DoctorRegistrationForm({super.key});
@@ -45,59 +44,82 @@ class _DoctorRegistrationFormState extends State<DoctorRegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            NameFields(
-              firstNameController: _firstNameController,
-              lastNameController: _lastNameController,
-              otherNamesController: _otherNamesController,
+    return Scaffold( // Add Scaffold to provide Material context
+      appBar: AppBar(
+        title: const Text('Doctor Registration'),
+      ),
+      body: Stack(
+        children: [
+          // Background Image
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/mediconnect.png'),
+                fit: BoxFit.cover,
+              ),
             ),
-            const SizedBox(height: 20),
-            BirthdayField(birthdayController: _birthdayController),
-            const SizedBox(height: 20),
-            AddressFields(
-              streetNoController: _streetNoController,
-              streetNameController: _streetNameController,
-              cityController: _cityController,
-              postalCodeController: _postalCodeController,
+          ),
+          // Form Content
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    NameFields(
+                      firstNameController: _firstNameController,
+                      lastNameController: _lastNameController,
+                      otherNamesController: _otherNamesController,
+                    ),
+                    const SizedBox(height: 20),
+                    BirthdayField(birthdayController: _birthdayController),
+                    const SizedBox(height: 20),
+                    AddressFields(
+                      streetNoController: _streetNoController,
+                      streetNameController: _streetNameController,
+                      cityController: _cityController,
+                      postalCodeController: _postalCodeController,
+                    ),
+                    const SizedBox(height: 20),
+                    NICField(nicController: _nicController),
+                    const SizedBox(height: 20),
+                    SpecializationDropdown(
+                      selectedSpecialization: _selectedSpecialization,
+                      onSpecializationChanged: (specialization) {
+                        setState(() {
+                          _selectedSpecialization = specialization;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    DoctorIDField(doctorIDController: _doctorIDController),
+                    const SizedBox(height: 20),
+                    DoctorIDUpload(),
+                    const SizedBox(height: 20),
+                    Column(
+                      children: _hospitalFields,
+                    ),
+                    const SizedBox(height: 20),
+                    IconButton(
+                      icon: const Icon(Icons.add_circle, size: 30, color: Colors.green),
+                      onPressed: _addHospitalField,
+                    ),
+                    const SizedBox(height: 20),
+                    RegisterButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Handle doctor registration
+                        }
+                      }, 
+                      selectedRole: "Doctor",
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 20),
-            NICField(nicController: _nicController),
-            const SizedBox(height: 20),
-            SpecializationDropdown(
-              selectedSpecialization: _selectedSpecialization,
-              onSpecializationChanged: (specialization) {
-                setState(() {
-                  _selectedSpecialization = specialization;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            DoctorIDField(doctorIDController: _doctorIDController),
-            const SizedBox(height: 20),
-            DoctorIDUpload(), // Widget for uploading Doctor ID photo
-            const SizedBox(height: 20),
-            Column(
-              children: _hospitalFields,
-            ),
-            const SizedBox(height: 20),
-            IconButton(
-              icon: const Icon(Icons.add_circle, size: 30, color: Colors.green),
-              onPressed: _addHospitalField,
-            ),
-            const SizedBox(height: 20),
-            RegisterButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  // Handle doctor registration
-                }
-              }, selectedRole:  "Doctor",
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

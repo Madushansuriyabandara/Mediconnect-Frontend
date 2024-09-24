@@ -7,7 +7,7 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned.fill(
       child: Image.asset(
-        'assets/images/image.png', // Background image asset
+        'assets/images/mediconnect.png', // Background image asset
         fit: BoxFit.cover, // Make image cover the entire screen
       ),
     );
