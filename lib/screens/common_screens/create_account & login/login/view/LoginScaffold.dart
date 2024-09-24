@@ -3,9 +3,14 @@ import 'package:mediconnect/screens/common_screens/role_selection/RoleSelection.
 import '../../widgets/widgets.dart';
 //import '../role_selection/role_selection_screen.dart'; // Import role selection screen
 
-class LoginScaffold extends StatelessWidget {
+class LoginScaffold extends StatefulWidget {
   const LoginScaffold({super.key});
 
+  @override
+  State<LoginScaffold> createState() => _LoginScaffoldState();
+}
+
+class _LoginScaffoldState extends State<LoginScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
