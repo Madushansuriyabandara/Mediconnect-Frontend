@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/common_screens/create_account%20&%20login/create_account/widgets/CreateAccountButton.dart';
 import '../../widgets/widgets.dart';
 
-class CreateAccountScaffold extends StatelessWidget {
+class CreateAccountScaffold extends StatefulWidget {
   const CreateAccountScaffold({super.key});
 
+  @override
+  State<CreateAccountScaffold> createState() => _CreateAccountScaffoldState();
+}
+
+class _CreateAccountScaffoldState extends State<CreateAccountScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
