@@ -29,7 +29,7 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
   Future<void> fetchData() async {
     try {
       final response = await http.get(Uri.parse(
-          'https://gist.githubusercontent.com/PasinduNimesha/418cd90da2753629286358905eaf5c59/raw/332251635fadc8284f9060251cd82571b06a6392/appointments.json'));
+          'https://gist.githubusercontent.com/Madushansuriyabandara/b4b46ac4e1e90095759f3b7fb277c203/raw/b0fe08959d0b321f7afeb5fcb8189fdb97c0de8e/appointments.json'));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);

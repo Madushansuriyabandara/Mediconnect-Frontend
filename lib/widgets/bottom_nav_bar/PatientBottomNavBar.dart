@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/patient_screens/prescriptions/prescriptions_page/PrescriptionPage.dart';
 
 import '../../screens/patient_screens/home/home_page/HomePage.dart';
-//import '../../screens/patient_screens/notifications/notification_page/Notification_page.dart';
+import '../../screens/patient_screens/notifications/notification_page/NotificationPage.dart';
 import '../../screens/patient_screens/profile/profile_page/ProfileScreen.dart';
 import '../../screens/patient_screens/search/search_page/SearchDoctor.dart';
 
@@ -49,30 +49,30 @@ class PatientBottomNavBar extends StatelessWidget {
         onTap: (Index) {
           onTap(Index);
           switch (Index) {
-            // case 0:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => PrescriptionScreen()),
-            //   );
-            //   break;
-            // case 1:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => SearchDoctor()),
-            //   );
-            //   break;
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrescriptionPage()),
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchDoctor()),
+              );
+              break;
             case 2:
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => HomePage()),
               );
               break;
-            // case 3:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => Notifications()),
-            //   );
-            //   break;
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificationPage()),
+              );
+              break;
             case 4:
               Navigator.push(
                 context,

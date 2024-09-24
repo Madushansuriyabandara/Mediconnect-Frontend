@@ -14,51 +14,49 @@ class NameFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.7), // Blurred background box
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: firstNameController,
-                    decoration: const InputDecoration(labelText: 'First name'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your first name';
-                      }
-                      return null;
-                    },
-                  ),
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.85), // Blurred background box
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: firstNameController,
+                  decoration: const InputDecoration(labelText: 'First name'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextFormField(
-                    controller: lastNameController,
-                    decoration: const InputDecoration(labelText: 'Last name'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your last name';
-                      }
-                      return null;
-                    },
-                  ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: TextFormField(
+                  controller: lastNameController,
+                  decoration: const InputDecoration(labelText: 'Last name'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
                 ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              controller: otherNamesController,
-              decoration: const InputDecoration(labelText: 'Other names'),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          TextFormField(
+            controller: otherNamesController,
+            decoration: const InputDecoration(labelText: 'Other names'),
+          ),
+        ],
       ),
     );
   }

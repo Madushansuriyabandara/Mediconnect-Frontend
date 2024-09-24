@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mediconnect/screens/doctor_screens/NotificationPage/notification.dart';
 import 'package:mediconnect/screens/doctor_screens/ProfilePage/profile.dart';
 import 'package:mediconnect/screens/doctor_screens/TaskPage/mytask.dart';
+import 'package:mediconnect/screens/doctor_screens/StatsPage/bar.dart';
 import 'homepage/home.dart';
 
 class DoctorHomeScreen extends StatefulWidget {
@@ -25,10 +26,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const TaskPage(),
-    const Text(
-      'Stats Page',
-      style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-    ),
+    const Barchart(),
     const Home(),
     const Notifications(),
     const Profile(),

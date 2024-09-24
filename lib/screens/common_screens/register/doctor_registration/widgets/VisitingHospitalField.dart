@@ -39,9 +39,13 @@ class VisitingHospitalField extends StatelessWidget {
               return null;
             },
           ),
-          Row(
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 5.0, // Spacing between elements
+            runSpacing: 5.0, // Spacing between rows
             children: daysOfWeek.map((day) {
               return Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Checkbox(
                     value: daySelected[day],
@@ -54,6 +58,7 @@ class VisitingHospitalField extends StatelessWidget {
               );
             }).toList(),
           ),
+          const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => _pickTime(context),
             child: Text(visitingTime != null ? visitingTime!.format(context) : 'Pick Time'),
