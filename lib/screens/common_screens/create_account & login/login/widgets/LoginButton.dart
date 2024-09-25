@@ -3,11 +3,18 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  const LoginButton({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
 
   Future<void> _checkLoginCredentials(
       BuildContext context, String email, String password) async {
-    final url = Uri.parse('https://your-backend-url.com/api/login/');
+    final url = Uri.parse('http://192.168.8.124:8000/users/login/'); // Update to your login API URL
     try {
       final response = await http.post(
         url,
@@ -20,11 +27,10 @@ class LoginButton extends StatelessWidget {
         }),
       );
 
-      if (/*response.statusCode*/200 == 200) {
-        // If the server returns a 200 OK response, navigate to home screen
+      if (response.statusCode == 200) {
+        // Login successful
         Navigator.pushNamed(context, '/home');
       } else if (response.statusCode == 401) {
-        // Invalid credentials
         _showErrorDialog(context, 'Incorrect email or password.');
       } else {
         _showErrorDialog(context, 'Something went wrong. Try again.');
@@ -58,8 +64,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        final email = 'user@example.com'; // Replace with actual email input value
-        final password = 'password123'; // Replace with actual password input value
+        final email = emailController.text.trim();
+        final password = passwordController.text.trim();
         _checkLoginCredentials(context, email, password);
       },
       style: ElevatedButton.styleFrom(

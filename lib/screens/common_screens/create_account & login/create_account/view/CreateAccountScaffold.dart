@@ -26,7 +26,7 @@ class _CreateAccountScaffoldState extends State<CreateAccountScaffold> {
 
   Future<void> createAccount() async {
     // The URL of your API endpoint
-    const String apiUrl = 'http://192.168.43.214:8000/users/create/';
+    const String apiUrl = 'http://192.168.8.124:8000/users/create/';
 
     try {
       // Make the POST request

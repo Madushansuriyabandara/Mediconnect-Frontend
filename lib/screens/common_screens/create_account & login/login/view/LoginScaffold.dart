@@ -45,10 +45,10 @@ class _LoginScaffoldState extends State<LoginScaffold> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min, // Reduce the box size based on content
                           children: [
-                            EmailField(),
-                            PasswordField(),
+                            EmailField(emailController: _emailController,),
+                            PasswordField(passwordController: _passwordController,),
                             const SizedBox(height: 20),
-                            LoginButton(),
+                            LoginButton(emailController: _emailController, passwordController: _passwordController,),
                             const SizedBox(height: 20),
                             const Text('Or', style: TextStyle(color: Colors.black)),
                             const SizedBox(height: 10),
