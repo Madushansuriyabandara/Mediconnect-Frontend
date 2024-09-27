@@ -74,6 +74,7 @@ flutter:
      - assets/images/mediconnect.png
      - assets/logos/flogo-HexRBG-Wht-100.png
      - assets/logos/google-logo.png
+     - assets/images/bluish glassy.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

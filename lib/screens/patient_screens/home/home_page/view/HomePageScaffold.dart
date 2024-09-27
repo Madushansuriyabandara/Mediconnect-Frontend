@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../widgets/widgets.dart'; // Import all widgets from the widgets.dart file
 import 'package:qr_flutter/qr_flutter.dart';
@@ -50,84 +52,123 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.switch_account),
-            onPressed: () {
-              switchUser(context);
-            },
+    return Stack(
+      children: [
+        // Image background
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bluish glassy.jpg'),
+              fit: BoxFit.cover, // Cover the entire screen
+            ),
           ),
-        ],
-      ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: QrImageView(
-                      data: userEmail,
-                      size: 200.0,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'My Appointments',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: appointments.length,
-                      itemBuilder: (context, index) {
-                        final appointment = appointments[index];
-                        return AppointmentButton(
-                          color: getAppointmentStatusColor(
-                              appointment['appointmentStatus']),
-                          text:
-                              '${appointment['appointmentName']} - ${appointment['doctorName']}',
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AppointmentDetailsScreen(
-                                  appointmentName:
-                                      appointment['appointmentName'],
-                                  doctorName: appointment['doctorName'],
-                                  specialty: appointment['specialty'],
-                                  appointmentTime:
-                                      appointment['appointmentTime'],
-                                  appointmentDate:
-                                      appointment['appointmentDate'],
-                                  location: appointment['location'],
-                                  appointmentNumber:
-                                      appointment['appointmentNumber'],
-                                  currentNumber: appointment['currentNumber'],
-                                  turnTime: appointment['turnTime'],
-                                  appointmentStatus:
-                                      appointment['appointmentStatus'],
-                                ),
-                              ),
-                            );
-                          },
-                        );
+        ),
+
+        // The rest of your UI remains unchanged
+        Scaffold(
+          backgroundColor: Colors.transparent, // Make Scaffold transparent
+          body: Column(
+            children: [
+              // Custom AppBar
+              Container(
+                color: Colors.transparent,
+                padding: const EdgeInsets.only(top: 30), // Top padding for status bar
+                child: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  title: const Text('Home'),
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.switch_account),
+                      onPressed: () {
+                        switchUser(context);
                       },
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-      bottomNavigationBar: PatientBottomNavBar(
-        currentIndex: 2,
-        onTap: (index) {
-          // Handle bottom navigation tap
-        },
-      ),
+
+              // Main content
+              Expanded(
+                child: isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: QrImageView(
+                                data: userEmail,
+                                size: 200.0,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            const Text(
+                              'My Appointments',
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 10),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: appointments.length,
+                                itemBuilder: (context, index) {
+                                  final appointment = appointments[index];
+                                  return AppointmentButton(
+                                    color: getAppointmentStatusColor(
+                                        appointment['appointmentStatus']),
+                                    text:
+                                        '${appointment['appointmentName']} - ${appointment['doctorName']}',
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AppointmentDetailsScreen(
+                                            appointmentName: appointment[
+                                                'appointmentName'],
+                                            doctorName:
+                                                appointment['doctorName'],
+                                            specialty:
+                                                appointment['specialty'],
+                                            appointmentTime:
+                                                appointment['appointmentTime'],
+                                            appointmentDate:
+                                                appointment['appointmentDate'],
+                                            location:
+                                                appointment['location'],
+                                            appointmentNumber: appointment[
+                                                'appointmentNumber'],
+                                            currentNumber:
+                                                appointment['currentNumber'],
+                                            turnTime: appointment['turnTime'],
+                                            appointmentStatus: appointment[
+                                                'appointmentStatus'],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+              ),
+
+              // Bottom Navigation Bar
+              PatientBottomNavBar(
+                currentIndex: 2,
+                onTap: (index) {
+                  // Handle bottom navigation tap
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
