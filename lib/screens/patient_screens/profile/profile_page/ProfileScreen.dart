@@ -1,53 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../common_screens/create_account & login/login/LoginScreen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
-
-  void _showRemoveAccountDialog(BuildContext context, String userName) {
-    TextEditingController controller = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Remove Account'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Type "Remove $userName" to confirm'),
-              const SizedBox(height: 10),
-              TextField(controller: controller),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                if (controller.text == 'Remove $userName') {
-                  // Perform account removal
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  );
-                } else {
-                  // Show error message or do nothing
-                }
-              },
-              child: const Text('Confirm'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +26,14 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'), // replace with actual image asset
+                      backgroundImage: AssetImage(
+                          'assets/images/profile.jpg'), // replace with actual image asset
                     ),
                     const SizedBox(height: 10),
                     Text(
                       fullName,
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
                   ],
@@ -98,7 +56,8 @@ class ProfileScreen extends StatelessWidget {
                 title: Text('123 Main Street, New York, USA'),
               ),
               const SizedBox(height: 20),
-              const Text('Settings', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text('Settings',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ExpansionTile(
                 title: const Text('Notifications'),
                 children: [
@@ -193,15 +152,17 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
                   );
                 },
-                child: const Text('Log Out'),
-              ),
-              ElevatedButton(
-                onPressed: () => _showRemoveAccountDialog(context, fullName),
-                child: const Text('Remove Account'),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlue.shade700,
+                ),
+                child: const Text(
+                  'Log Out',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ],
           ),

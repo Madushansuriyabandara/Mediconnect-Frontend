@@ -45,7 +45,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
               title: Text(
                 "$doctorName - $appointmentName",
                 style:
-                const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               subtitle: Text("$doctorName($specialty)"),
             ),
@@ -114,7 +114,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
                   ),
                   child: const Text(
                     "Rate",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                 ),
                 ElevatedButton(
@@ -122,13 +122,13 @@ class AppointmentDetailsScreen extends StatelessWidget {
                     // Handle remove appointment action
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.grey,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 10),
                   ),
                   child: const Text(
                     "Remove Appointment",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                 ),
               ],

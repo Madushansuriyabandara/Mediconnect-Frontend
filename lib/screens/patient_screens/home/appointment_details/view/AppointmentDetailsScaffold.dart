@@ -31,7 +31,8 @@ class AppointmentDetailsScaffold extends StatelessWidget {
   });
 
   Future<void> removeAppointment(BuildContext context) async {
-    final response = await http.delete(Uri.parse('your-backend-url')); // Replace with your backend URL
+    final response = await http
+        .delete(Uri.parse('your-backend-url')); // Replace with your backend URL
     if (response.statusCode == 200) {
       // Navigate back to Home and show a success message
       Navigator.pop(context);
@@ -63,7 +64,8 @@ class AppointmentDetailsScaffold extends StatelessWidget {
               leading: const Icon(Icons.person, size: 40),
               title: Text(
                 "$doctorName - $appointmentName",
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               subtitle: Text("$doctorName ($specialty)"),
             ),
@@ -102,7 +104,8 @@ class AppointmentDetailsScaffold extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Appointment Status: $appointmentStatus",
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -113,12 +116,14 @@ class AppointmentDetailsScaffold extends StatelessWidget {
                 ElevatedButton(
                   onPressed: isCompleted
                       ? () {
-                          Navigator.pushNamed(context, '/ratePage', arguments: doctorName);
+                          Navigator.pushNamed(context, '/ratePage',
+                              arguments: doctorName);
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isCompleted ? Colors.blue : Colors.grey,
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
                   ),
                   child: const Text(
                     "Rate",
@@ -127,11 +132,13 @@ class AppointmentDetailsScaffold extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    removeAppointmentConfirmationDialog(context, () => removeAppointment(context));
+                    removeAppointmentConfirmationDialog(
+                        context, () => removeAppointment(context));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    backgroundColor: Colors.grey,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
                   ),
                   child: const Text(
                     "Remove Appointment",

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 Color getAppointmentStatusColor(String appointmentStatus) {
   switch (appointmentStatus) {
     case 'Queued':
-      return Colors.yellow;
+      return const Color(0xFFB3E5FC);
     case 'Completed':
-      return Colors.green;
+      return const Color(0xFFB3E5FC);
     case 'Missed':
-      return Colors.red;
+      return const Color(0xFFB3E5FC);
     case 'Upcoming':
-      return Colors.blue;
+      return const Color(0xFFB3E5FC);
     default:
-      return Colors.grey;
+      return const Color(0xFFB3E5FC);
   }
 }

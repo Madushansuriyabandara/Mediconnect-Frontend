@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
-void removeAppointmentConfirmationDialog(BuildContext context, VoidCallback onConfirm) {
+void removeAppointmentConfirmationDialog(
+    BuildContext context, VoidCallback onConfirm) {
   TextEditingController controller = TextEditingController();
 
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Remove Appointment'),
+        title: const Text(
+          'Remove Appointment',
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
