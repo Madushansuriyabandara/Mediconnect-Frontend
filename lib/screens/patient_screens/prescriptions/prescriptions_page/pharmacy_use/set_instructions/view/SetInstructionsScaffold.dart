@@ -23,7 +23,7 @@ class _SetInstructionsScaffoldState extends State<SetInstructionsScaffold> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.medication),
-        backgroundColor: Colors.green,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
